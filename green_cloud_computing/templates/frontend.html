@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<!--Add title-->
+<body>
+	<p>Click on the "Choose File" button to upload a file:</p>
+
+	<form action="http://127.0.0.1:8000/upload_image" method="POST" enctype="multipart/form-data">
+	<!--TODO @Nischal change hardocded url to jinja syntax-->
+		{% csrf_token %}
+  		{{ form.as_p }} 
+		<input type="file" id="myFile" name="filename" accept="image/jpg, image/jpeg, image/png" onchange="readURL(this)">
+		<input type="submit"><img id="image" src="#" alt="your image"/>
+		
+	</form>
+
+
+</body>
+</html>
