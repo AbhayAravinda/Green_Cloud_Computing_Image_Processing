@@ -4,7 +4,9 @@ from .models import imagesDB
 # Create your views here.
 from django.http import HttpResponse
 from django.conf import settings
-
+ 
+from datetime import datetime, timedelta
+from time import sleep 
 
 def index(request):
     return render(request, "frontend.html")
@@ -13,7 +15,13 @@ def index(request):
 def upload_image(request):
     uploaded_file = request.FILES['filename']
     fs = FileSystemStorage()
-    saved_name = fs.save(uploaded_file.name, uploaded_file)
+    saved_name = fs.save(uploaded_file.name, uploaded_file) 
+    for record in imagesDB.objects.all():
+        time_elapsed = datetime.now() - record.image_time
+        if time_elapsed > timedelta(hours=1):
+            record.delete()
+        print(record.image_url) 
+        
 
     image_put = imagesDB(
         image_name=uploaded_file.name, image_url=settings.MEDIA_URL+saved_name)
