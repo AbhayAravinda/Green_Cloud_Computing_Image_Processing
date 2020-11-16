@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
-<!--Add title-->
+<head>
+	<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="https://use.typekit.net/oov2wcw.cc">
+	<link rel="stylesheet" href="style.css">
+	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+</head>
 <body>
+<<<<<<< HEAD
 	<p>Click on the "Choose File" button to upload a file:</p>
 
 	<form action="/upload_image" method="POST" enctype="multipart/form-data">
@@ -13,5 +20,21 @@
 	</form>
 
 
+=======
+	<center>
+		<h1>Click on the "Choose File" button to upload a file:</h1>
+		<form action="{% url 'upload_image' %}" method="POST" enctype="multipart/form-data">
+			<!--TODO @Nischal change hardocded url to jinja syntax-->
+			{% csrf_token %}
+  			{{ form.as_p }} 
+			<input type="file" id="myFile" name="filename" accept="image/jpg, image/jpeg, image/png" onchange="readURL(this)"><br><br>
+			<input type="submit" onclick="myFunction()"><br><br>
+			<div>
+				<img id="image" src="#" alt="your image"/>
+			</div>
+		</form>
+	</center>
+	<script src="script.js"></script>
+>>>>>>> b82a88e671612ba560ce58180b345623bbc9a895
 </body>
 </html>
