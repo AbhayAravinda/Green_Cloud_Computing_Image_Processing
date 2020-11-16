@@ -4,10 +4,9 @@
 <body>
 	<p>Click on the "Choose File" button to upload a file:</p>
 
-	<form action="{% url 'upload_image' %}" method="POST" enctype="multipart/form-data">
+	<form action="/upload_image" method="POST" enctype="multipart/form-data">
 	<!--TODO @Nischal change hardocded url to jinja syntax-->
-		{% csrf_token %}
-  		{{ form.as_p }} 
+		{% csrf_token %} 
 		<input type="file" id="myFile" name="filename" accept="image/jpg, image/jpeg, image/png" onchange="readURL(this)">
 		<input type="submit"><img id="image" src="#" alt="your image"/>
 		

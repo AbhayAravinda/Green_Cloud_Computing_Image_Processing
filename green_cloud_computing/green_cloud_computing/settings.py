@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'image_processing',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'green_cloud_computing.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join('', 'templates'),],
+        'DIRS': [os.path.join('', 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,7 +123,7 @@ STATIC_URL = '/static/'
 
 
 # Where files are stored by defualt
-MEDIA_ROOT = os.path.join(BASE_DIR,'files')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
 
 # Url to fetch files
-MEDIA_URL = '/files/view/'
+MEDIA_URL = '/files/'

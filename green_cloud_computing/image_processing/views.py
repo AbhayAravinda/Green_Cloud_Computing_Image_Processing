@@ -18,6 +18,7 @@ def upload_image(request):
     image_put = imagesDB(
         image_name=uploaded_file.name, image_url=settings.MEDIA_URL+saved_name)
     image_put.save()
+
     # USe opencv and edit the image
     # rewrite the image
 
