@@ -1,5 +1,4 @@
 files
-__psyche__
-__init__.py
+__pycache__
 migrations
 db.sqlite3
