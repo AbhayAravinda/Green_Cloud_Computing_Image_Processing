@@ -9,15 +9,28 @@
 </head>
 <body>
 	<center>
-		<h1>Click on the "Choose File" button to upload a file:</h1>
-		<form action="/upload_image" method="POST" enctype="multipart/form-data">
-			<!--TODO @Nischal change hardocded url to jinja syntax-->
-			{% csrf_token %} 
-			<input type="file" id="myFile" name="filename" accept="image/jpg, image/jpeg, image/png" onchange="readURL(this)"><br><br>
-			<input type="submit" onclick="myFunction()"><br><br>
-			<div>
-				<img id="image" src="#" alt="your image"/>
-			</div>
+		<h2>Click on the "Upload File" Button<br><br> OR <br><br>Drag and Drop to upload an image:</h2><br><br>
+		<form action="{% url 'upload_image' %}" method="POST" enctype="multipart/form-data">
+			<div class="upload">
+				<p id="para">Upload Image</p>
+				<div>
+					<img id="image" src="#" alt="your image"/>
+				</div>
+				<input class="hide_file" type="file" id="myFile" name="filename" accept="image/jpg, image/jpeg, image/png" onchange="readURL(this)">
+			</div><br><br>
+			<label for="imgUpload"><b>Choose an Effect:</b></label><br><br>
+			<select name="imgUpload" id="imgUpload">
+				<option value="grayscale">GrayScale</option>
+				<option value="histogram">Histogram Equilization (along Y axis)</option>
+				<option value="gaussian">Gaussian Blur</option>
+				<option value="increase">Brightness Increase</option>
+				<option value="decrease">Brightness Decrease</option>
+				<option value="inversion">Color Inversion</option>
+				<option value="negative">Negative Image</option>
+				<option value="sepia">Sepia Effect</option>
+				<option value="clahe">Contrast Limited Adaptive Histogram Equalization</option>
+			</select>
+			<input type="submit" onclick="myFunction()" id="search">
 		</form>
 	</center>
 	<script src="script.js"></script>
