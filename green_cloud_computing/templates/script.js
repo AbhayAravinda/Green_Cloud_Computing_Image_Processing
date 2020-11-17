@@ -12,6 +12,8 @@ function readURL(input)
 		reader.readAsDataURL(input.files[0]);
 	}
 	var x = document.getElementById("image");
-
 	x.style.display = "block";
+
+	var y = document.getElementById("para");
+	y.style.display="none";
 }
