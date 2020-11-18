@@ -1,3 +1,5 @@
+//TODO: Try to get rid of jQuery
+
 function readURL(input) 
 {
 	if (input.files && input.files[0]) 
@@ -24,12 +26,28 @@ function final() {
 	selectElement =  
 	document.querySelector('#imgUpload');
 	output = selectElement.value; 
-	result['effect'] = output;
+	result['process'] = output;
 	console.log(result);
 
-    $.post('/upload-image/', result, function(response){
-        if(response === 'success'){ alert('Yay!'); }
-        else{ alert('Error! :('); }});
+ 
+	const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+ 	const request = new Request(
+	    '/upload_image',
+	    {headers: {'X-CSRFToken': csrftoken}}
+	);
+	fetch(request, {
+	    method: 'POST',
+	    mode: 'same-origin',  // Do not send CSRF token to another domain.
+	    body: JSON.stringify(result)
+	}).then(function(response) {
+	    return response.json()
+	}).then(function(json) {
+		processed_image_url = json.processed_image_url
+		// TODO: Instead of redirecting, choose what you want to do
+		window.location = processed_image_url
+	})
+
+
 }
 
 function getDataUrl(img)
@@ -44,5 +62,5 @@ function getDataUrl(img)
 const img = document.querySelector('#image');
 img.addEventListener('load', function (event) {
    const dataUrl = getDataUrl(event.currentTarget);
-   result['image'] = dataUrl;
+   result['base64_image'] = dataUrl;
 });

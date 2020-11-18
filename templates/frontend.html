@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!--TODO: Check how many of these are actually needed. Some aren't even loaded and show error in logs-->
 	<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="https://use.typekit.net/oov2wcw.cc">
 	{% load static %}
@@ -9,9 +10,9 @@
 	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 </head>
 <body>
+	{% csrf_token %}
 	<center>
 		<h2>Click on the "Upload File" Button<br><br> OR <br><br>Drag and Drop to upload an image:</h2><br><br>
-		{% csrf_token %} 
 		<div class="upload">
 			<p id="para">Upload Image</p>
 			<div>
@@ -23,11 +24,11 @@
 		<select name="imgUpload" id="imgUpload">
 			<option value="grayscale">GrayScale</option>
 			<option value="histogram">Histogram Equilization (along Y axis)</option>
-			<option value="gaussian">Gaussian Blur</option>
-			<option value="increase">Brightness Increase</option>
-			<option value="decrease">Brightness Decrease</option>
-			<option value="inversion">Color Inversion</option>
-			<option value="negative">Negative Image</option>
+			<option value="gaussian_blur">Gaussian Blur</option>
+			<option value="brightness_increase">Brightness Increase</option>
+			<option value="brightness_decrease">Brightness Decrease</option>
+			<option value="color_inversion">Color Inversion</option>
+			<option value="negative_image">Negative Image</option>
 			<option value="sepia">Sepia Effect</option>
 			<option value="clahe">Contrast Limited Adaptive Histogram Equalization</option>
 		</select>
