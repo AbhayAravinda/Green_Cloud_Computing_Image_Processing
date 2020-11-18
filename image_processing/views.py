@@ -8,7 +8,7 @@ from django.conf import settings
 from datetime import datetime, timedelta
 from time import sleep 
 
-#OpenCV
+# OpenCV
 import numpy as np
 import cv2
 from PIL import Image
@@ -22,13 +22,13 @@ def upload_image(request):
     uploaded_file = request.FILES['filename']
     fs = FileSystemStorage()
     saved_name = fs.save(uploaded_file.name, uploaded_file) 
-    '''
+    
     for record in imagesDB.objects.all():
         time_elapsed = datetime.now() - record.image_time
         if time_elapsed > timedelta(hours=1):
             record.delete()
         print(record.image_url) 
-    '''    
+        
 
 
     image_put = imagesDB(

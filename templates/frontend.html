@@ -10,7 +10,8 @@
 <body>
 	<center>
 		<h2>Click on the "Upload File" Button<br><br> OR <br><br>Drag and Drop to upload an image:</h2><br><br>
-		<form action="{% url 'upload_image' %}" method="POST" enctype="multipart/form-data">
+		<form action="/upload_image/" method="POST" enctype="multipart/form-data">
+        {{% csrf_token %}}
 			<div class="upload">
 				<p id="para">Upload Image</p>
 				<div>
