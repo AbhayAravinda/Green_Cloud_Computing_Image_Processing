@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from .models import imagesDB
 # Create your views here.
+import pytz
+import os
 from django.http import HttpResponse
 from django.conf import settings
  
@@ -24,10 +26,15 @@ def upload_image(request):
     saved_name = fs.save(uploaded_file.name, uploaded_file) 
     
     for record in imagesDB.objects.all():
-        time_elapsed = datetime.now() - record.image_time
-        if time_elapsed > timedelta(hours=1):
+        startTime = pytz.utc.localize(datetime.now()-timedelta(hours=1))
+        if record.image_time < startTime:
             record.delete()
         print(record.image_url) 
+        if os.path.exists(record.image_url):
+            os.remove(record.image_url)
+        else:
+            print("The file does not exist")
+        
         
 
 
