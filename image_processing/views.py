@@ -7,13 +7,11 @@ import json
 from django.http import JsonResponse
 import random
 import string
-import pytz
 import os
 from django.http import HttpResponse
 from django.conf import settings
  
-from datetime import datetime, timedelta
-from time import sleep 
+
 import base64
 from django.core.files.base import ContentFile
 
@@ -39,19 +37,6 @@ def upload_image(request):
     fs = FileSystemStorage()
     saved_name = fs.save(decoded_image.name, decoded_image) 
     
-    for record in imagesDB.objects.all():
-        startTime = pytz.utc.localize(datetime.now()-timedelta(hours=1))
-        if record.image_time < startTime:
-            record.delete()
-        print(record.image_url) 
-        if os.path.exists(record.image_url):
-            os.remove(record.image_url)
-        else:
-            print("The file does not exist")
-        
-        
-
-
     image_put = imagesDB(
         image_name=saved_name, image_url=settings.MEDIA_ROOT+'/'+saved_name)
     image_put.save()
