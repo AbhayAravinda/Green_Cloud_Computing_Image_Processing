@@ -3,15 +3,18 @@
 <head>
 	<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="https://use.typekit.net/oov2wcw.cc">
-	<link rel="stylesheet" href="style.css">
+	{% comment %} <link rel="stylesheet" href="style.css"> {% endcomment %}
+    {% load static %}
+        <link rel="stylesheet" href="{% static 'style.css' %}">
 	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 </head>
 <body>
 	<center>
 		<h2>Click on the "Upload File" Button<br><br> OR <br><br>Drag and Drop to upload an image:</h2><br><br>
+        {% csrf_token %}
 		<form action="/upload_image/" method="POST" enctype="multipart/form-data">
-        {{% csrf_token %}}
+        
 			<div class="upload">
 				<p id="para">Upload Image</p>
 				<div>
@@ -34,6 +37,9 @@
 			<input type="submit" onclick="myFunction()" id="search">
 		</form>
 	</center>
-	<script src="script.js"></script>
+	{% comment %} <script src="script.js"></script> {% endcomment %}
+    {% load static %}
+        <script src="{% static 'script.js' %}">
+        </script>
 </body>
 </html>
