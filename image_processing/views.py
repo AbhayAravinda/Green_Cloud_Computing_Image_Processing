@@ -1,28 +1,16 @@
-# TODO: Sort these imports in order and clear out unwanted ones
-
 from django.shortcuts import render, redirect
-from django.core.files.storage import FileSystemStorage
-from .models import imagesDB
-import json
-from django.http import JsonResponse
-import random
-import string
-import os
-from django.http import HttpResponse
 from django.conf import settings
+
+from .models import imagesDB
 from .forms import imageForm
 
-
-# import base64
-# from django.core.files.base import ContentFile
-
+import os
 import numpy as np
 import cv2
 
 
 def index(request):
-    context = {}
-    context['form'] = imageForm()
+    context = {'form':imageForm()}
     return render(request, "frontend.html", context)
 
 
@@ -56,15 +44,11 @@ def upload_image(request):
 
             # # Brightness Increase
             elif option == 'brightness_increase':
-                alpha = 1.5
-                beta = 0
-                img_out = cv2.convertScaleAbs(img, alpha=alpha, beta=beta)
+                img_out = cv2.convertScaleAbs(img, alpha=1.5, beta=0)
 
             # # Brightness Decrease
             elif option == 'brightness_decrease':
-                alpha = 0.5
-                beta = 0
-                img_out = cv2.convertScaleAbs(img, alpha=alpha, beta=beta)
+                img_out = cv2.convertScaleAbs(img, alpha=0.5, beta=0)
 
             # # Color inversion
             elif option == 'color_inversion':
