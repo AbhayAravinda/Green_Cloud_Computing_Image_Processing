@@ -4,7 +4,7 @@ from django.conf import settings
 from .models import imagesDB
 from .forms import imageForm
 
-import os
+from os import path
 import numpy as np
 import cv2
 
@@ -25,7 +25,7 @@ def upload_image(request):
             )
             obj.save()
             
-            s=os.path.join(settings.MEDIA_ROOT,str(obj.image))
+            s=path.join(settings.MEDIA_ROOT,str(obj.image))
             
             img = cv2.imread(s)
             # # GrayScale
@@ -63,12 +63,10 @@ def upload_image(request):
                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
                 normalized_gray = np.array(gray, np.float32)/255
                 sepia = np.ones(img.shape)
-                sepia[:, :, 0] *= 153  # B
-                sepia[:, :, 1] *= 204  # G
-                sepia[:, :, 2] *= 255  # R
-                sepia[:, :, 0] *= normalized_gray  # B
-                sepia[:, :, 1] *= normalized_gray  # G
-                sepia[:, :, 2] *= normalized_gray  # R
+                sepia[:, :, 0] = 153 * normalized_gray # B
+                sepia[:, :, 1] = 204 * normalized_gray # G
+                sepia[:, :, 2] = 255 * normalized_gray # R
+
                 img_out = np.array(sepia, np.uint8)
 
             # # Contrast Limited Adaptive Histogram Equalization (CLAHE)
@@ -79,7 +77,4 @@ def upload_image(request):
             cv2.imwrite(s, img_out)
             
             return redirect('http://127.0.0.1:8000'+settings.MEDIA_URL+str(obj.image))
-        else:
-            return redirect(index)
-    else:
-        return redirect(index)
+    return redirect(index)

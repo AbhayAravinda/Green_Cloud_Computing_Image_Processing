@@ -25,10 +25,7 @@ def threaded_function():
 					record.delete()
 					print(record.image) 
 					image_url= os.path.join(settings.MEDIA_ROOT,str(record.image))
-					if os.path.exists(image_url):
-						os.remove(image_url)
-					else:
-						print("The file does not exist")
+					os.remove(image_url)
 				except:
 					pass
 		sleep(600)
