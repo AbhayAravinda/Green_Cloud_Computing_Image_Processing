@@ -4,5 +4,5 @@ from django.db import models
 
 
 class imagesDB(models.Model):
-    image = models.ImageField(upload_to="files/")
+    image = models.ImageField(upload_to="")
     image_time = models.DateTimeField(auto_now=True)
