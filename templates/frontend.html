@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!--TODO: Check how many of these are actually needed. Some aren't even loaded and show error in logs-->
 	{% load static %}
 	<link rel="stylesheet" href="{% static 'style.css' %}">
-	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 </head>
 <body>
 	<form  action="/upload_image" method="POST" enctype="multipart/form-data">
@@ -19,7 +16,6 @@
 				<img id="image" src="#" alt="your image"/>
 			</div>
 			
-			<!-- <input class="hide_file" type="file" id="myFile" name="filename" accept="image/jpg, image/jpeg, image/png" onchange="readURL(this)"> -->
 		{{form.image}}
 		
 		</div><br><br>

@@ -6,8 +6,7 @@ function readURL(input)
 
 		reader.onload = function (e) 
 		{
-			$('#image')
-			.attr('src', e.target.result);
+			document.getElementById("image").src = e.target.result;
 		};
 		reader.readAsDataURL(input.files[0]);
 	}
