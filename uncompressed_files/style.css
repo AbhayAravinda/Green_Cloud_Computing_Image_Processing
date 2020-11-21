@@ -10,7 +10,12 @@ body
 {
 	background-color: black; 
 	color: white; 
+	font-family:century-gothic;
+}
+
+@font-face{
 	font-family: century-gothic;
+	src: url("Century_Gothic.ttf");
 }
 
 h2
