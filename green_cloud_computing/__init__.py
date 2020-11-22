@@ -28,7 +28,7 @@ def threaded_function():
 					os.remove(image_url)
 				except:
 					pass
-		sleep(6000)
+		sleep(3600)
 
 t = threading.Thread(target = threaded_function, name='file_deletion_thread', daemon=True)
 t.start()
